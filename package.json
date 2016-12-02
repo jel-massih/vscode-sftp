@@ -1,35 +1,80 @@
 {
-    "name": "vscode-sftp",
-    "displayName": "FTP For VS Code",
-    "description": "FTP, FTPS and SFTP Support for Visual Studio Code",
-    "version": "0.0.1",
-    "publisher": "jel-massih",
-    "engines": {
-        "vscode": "^1.5.0"
+  "name": "vscode-sftp",
+  "displayName": "FTP For VS Code",
+  "description": "FTP, FTPS and SFTP Support for Visual Studio Code",
+  "version": "0.0.1",
+  "publisher": "jel-massih",
+  "engines": {
+    "vscode": "^1.5.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "VS Code Sftp Configuration",
+      "properties": {
+        "sftp.showActionsInExplorer": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show SFTP actions in the explorer context menu"
+        }
+      }
     },
-    "categories": [
-        "Other"
+    "commands": [
+      {
+        "command": "sftp.mapToRemote",
+        "title": "Map to Remote"
+      },
+      {
+        "command": "sftp.syncToRemote",
+        "title": "Sync Local to Remote"
+      },
+      {
+        "command": "sftp.syncFromRemote",
+        "title": "Sync Remote to Local"
+      },
+      {
+        "command": "sftp.syncBothWays",
+        "title": "Sync Both Ways"
+      }
     ],
-    "activationEvents": [
-        "onCommand:extension.sayHello"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
-    },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "sftp.syncToRemote",
+          "group": "sftp@1",
+          "when": "config.sftp.showActionsInExplorer"
+        },
+        {
+          "command": "sftp.syncFromRemote",
+          "group": "sftp@2",
+          "when": "config.sftp.showActionsInExplorer"
+        },
+        {
+          "command": "sftp.syncBothWays",
+          "group": "sftp@3",
+          "when": "config.sftp.showActionsInExplorer"
+        }
+      ]
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0",
+    "mocha": "^2.3.3",
+    "@types/node": "^6.0.40",
+    "@types/mocha": "^2.2.32",
+    "findup-sync": "^0.4.3"
+  }
 }
