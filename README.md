@@ -1,6 +1,6 @@
 # vscode-sftp
 
-[![GitHub issues](https://img.shields.io/github/issues/stef-levesque/vscode-perforce.svg)](https://github.com/jel-massih/vscode-perforce/issues)
+[![GitHub issues](https://img.shields.io/github/issues/jel-massih/vscode-sftp.svg)](https://github.com/jel-massih/vscode-sftp/issues)
 
 FTP, FTPS and SFTP Support for Visual Studio Code
 
